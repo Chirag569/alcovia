@@ -1,212 +1,166 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowLeft } from 'lucide-react'
 import ContourBackground from './ContourBackground'
 import ScribbleOverlay from './ScribbleOverlay'
 
 export default function SchoolToggle() {
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row overflow-hidden bg-[#F5F5DC]">
-      {/* Contour Background */}
+    <section
+      className="
+        relative 
+        min-h-0 md:min-h-screen 
+        overflow-hidden 
+        bg-[#F5F5DC] 
+        pb-0 mb-0
+      "
+    >
+
       <ContourBackground />
 
-      {/* Container for both cards - both always visible */}
-      <div className="relative w-full h-screen flex">
-        {/* Left Card - At School */}
+      {/* ALWAYS SIDE-BY-SIDE */}
+      <div
+        className="
+          flex flex-row 
+          items-center justify-center
+          w-full gap-4
+          px-2 md:px-4
+          mb-0 pb-0
+        "
+      >
+
+        {/* ================= LEFT CARD ================= */}
         <motion.div
-          className="relative w-full md:w-1/2 h-screen flex-shrink-0"
-          initial={{ opacity: 0, x: -50 }}
+          className="
+            relative 
+            w-[48%] md:w-1/2 
+            h-[52vh] md:h-screen 
+            rounded-2xl md:rounded-3xl 
+            overflow-hidden 
+            flex-shrink-0
+          "
+          initial={{ opacity: 0, x: -25 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="relative h-full flex flex-col justify-between overflow-hidden group">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Base gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C21807] via-[#FF3B30] to-[#C21807]" />
-              
-              {/* Background Image */}
+          <div className="relative h-full w-full rounded-3xl overflow-hidden">
+
+            {/* FIX: NO CUTTING */}
+            <div className="absolute inset-0">
               <motion.div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: `url(/atschool/image.png)`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center top',
-                  backgroundRepeat: 'no-repeat',
+                  backgroundImage: "url(/atschool/image.png)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "top center",
                 }}
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
+                transition={{ duration: 0.5 }}
               />
-              
-              {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
-              
-              {/* Red tint overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C21807]/60 via-[#FF3B30]/50 to-[#C21807]/60" />
+              <div className="absolute inset-0 bg-black/45" />
             </div>
 
-            {/* Scribble Overlay */}
             <ScribbleOverlay
               text="AT"
-              className="top-20 left-12 z-10 w-48 h-32 md:w-64 md:h-40"
+              className="top-6 left-4 md:top-12 md:left-12 w-20 h-16 md:w-48 md:h-36 z-10"
             />
 
-            {/* Content */}
-            <div className="relative z-20 h-full flex flex-col justify-between p-8 md:p-12 lg:p-16 items-start text-left">
-              {/* Top Section: Title */}
-              <div className="mt-20 md:mt-32">
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6"
-                  style={{ lineHeight: '0.9' }}
-                >
-                  <span className="text-[#D7FF1F]">AT</span>{' '}
-                  <span className="text-white">SCHOOL</span>
-                </motion.h1>
-              </div>
+            <div className="relative z-20 p-4 md:p-12 flex flex-col justify-between h-full">
 
-              {/* Bottom Section: Subtitle and Button */}
-              <div className="items-start flex flex-col gap-6">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-xl md:text-2xl lg:text-3xl font-medium text-white/95 max-w-xl leading-relaxed"
-                >
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-3xl md:text-8xl font-black text-white leading-none mt-8 md:mt-24"
+              >
+                <span className="text-[#C1121F]">AT</span> SCHOOL
+              </motion.h1>
+
+              <div className="flex flex-col gap-3 md:gap-6">
+                <p className="text-xs md:text-3xl text-white/90">
                   How Alcovia helps students ace school.
-                </motion.p>
+                </p>
 
-                {/* Neon Button */}
                 <motion.a
                   href="/atschool"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  whileHover={{ scale: 1.15, boxShadow: '0 0 40px rgba(215, 255, 31, 0.9)' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group/btn flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-xl bg-[#D7FF1F] transition-all duration-300 z-30 relative shadow-2xl"
-                  style={{
-                    boxShadow: '0 0 25px rgba(215, 255, 31, 0.7), inset 0 0 20px rgba(215, 255, 31, 0.3)', height: '30%',
-                  }}
+                  whileHover={{ scale: 1.1 }}
+                  className="w-10 h-10 md:w-20 md:h-20 flex items-center justify-center rounded-xl bg-[#C1121F]"
                 >
-                  <ArrowRight 
-                    className="w-8 h-8 md:w-10 md:h-10 text-[#0F1F3D] stroke-[3]" 
-                    style={{ filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.3))' }}
-                  />
+                  <ArrowRight className="w-5 h-5 md:w-12 md:h-12 text-white" />
                 </motion.a>
               </div>
             </div>
-
-            {/* Edge Cut-off Effect (Lando Norris style) */}
-            <div className="absolute top-0 bottom-0 right-0 w-24 md:w-40 bg-gradient-to-r from-transparent via-black/10 to-black/30 pointer-events-none" />
           </div>
         </motion.div>
 
-        {/* Right Card - Outside School */}
+        {/* ================= RIGHT CARD ================= */}
         <motion.div
-          className="relative w-full md:w-1/2 h-screen flex-shrink-0"
-          initial={{ opacity: 0, x: 50 }}
+          className="
+            relative 
+            w-[48%] md:w-1/2 
+            h-[52vh] md:h-screen 
+            rounded-2xl md:rounded-3xl 
+            overflow-hidden 
+            flex-shrink-0
+          "
+          initial={{ opacity: 0, x: 25 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="relative h-full flex flex-col justify-between overflow-hidden group">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Base gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C21807] via-[#FF3B30] to-[#C21807]" />
-              
-              {/* Background Image */}
+          <div className="relative h-full w-full rounded-3xl overflow-hidden">
+
+            <div className="absolute inset-0">
               <motion.div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: `url(/outsideschool/image.png)`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center top',
-                  backgroundRepeat: 'no-repeat',
+                  backgroundImage: "url(/outsideschool/image.png)",
+                  backgroundSize: "cover",
+                  backgroundPosition: "top center",
                 }}
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
+                transition={{ duration: 0.5 }}
               />
-              
-              {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70" />
-              
-              {/* Red tint overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C21807]/60 via-[#FF3B30]/50 to-[#C21807]/60" />
+              <div className="absolute inset-0 bg-black/45" />
             </div>
 
-            {/* Scribble Overlay */}
             <ScribbleOverlay
               text="OUT"
-              className="top-20 right-12 z-10 w-48 h-32 md:w-64 md:h-40"
+              className="top-6 right-4 md:top-12 md:right-12 w-20 h-16 md:w-48 md:h-36 z-10"
             />
 
-            {/* Content */}
-            <div className="relative z-20 h-full flex flex-col justify-between p-8 md:p-12 lg:p-16 items-end text-right">
-              {/* Top Section: Title */}
-              <div className="mt-20 md:mt-32">
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6"
-                  style={{ lineHeight: '0.9' }}
-                >
-                  OUTSIDE SCHOOL
-                </motion.h1>
-              </div>
+            <div className="relative z-20 p-4 md:p-12 flex flex-col justify-between h-full text-right">
 
-              {/* Bottom Section: Subtitle and Button */}
-              <div className="items-end flex flex-col gap-6">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-xl md:text-2xl lg:text-3xl font-medium text-white/95 max-w-xl leading-relaxed"
-                >
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-3xl md:text-8xl font-black text-white leading-none mt-8 md:mt-24"
+              >
+                OUTSIDE SCHOOL
+              </motion.h1>
+
+              <div className="flex flex-col items-end gap-3 md:gap-6">
+                <p className="text-xs md:text-3xl text-white/90">
                   How Alcovia builds unique value for every Alcovian.
-                </motion.p>
+                </p>
 
-                {/* Neon Button */}
                 <motion.a
                   href="/outsideschool"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  whileHover={{ scale: 1.15, boxShadow: '0 0 40px rgba(215, 255, 31, 0.9)' }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group/btn flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-xl bg-[#D7FF1F] transition-all duration-300 z-30 relative shadow-2xl"
-                  style={{
-                    boxShadow: '0 0 25px rgba(215, 255, 31, 0.7), inset 0 0 20px rgba(215, 255, 31, 0.3)', height: '30%',
-                  }}
+                  whileHover={{ scale: 1.1 }}
+                  className="w-10 h-10 md:w-20 md:h-20 flex items-center justify-center rounded-xl bg-[#C1121F]"
                 >
-                  <ArrowRight 
-                    className="w-8 h-8 md:w-10 md:h-10 text-[#0F1F3D] stroke-[3]" 
-                    style={{ filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.3))' }}
-                  />
+                  <ArrowLeft className="w-5 h-5 md:w-12 md:h-12 text-white" />
                 </motion.a>
               </div>
             </div>
-
-            {/* Edge Cut-off Effect (Lando Norris style) */}
-            <div className="absolute top-0 bottom-0 left-0 w-24 md:w-40 bg-gradient-to-l from-transparent via-black/10 to-black/30 pointer-events-none" />
           </div>
         </motion.div>
+
       </div>
 
-      {/* Center Divider Line - Subtle */}
-      <div className="absolute top-0 bottom-0 left-1/2 w-px bg-white/10 z-20 pointer-events-none" />
+      {/* CENTER LINE — desktop only */}
+      <div className="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-white/10" />
     </section>
   )
 }

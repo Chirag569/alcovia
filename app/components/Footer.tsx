@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
 const cards = [
-  { src: '/footer-cards/1.jpg', angle: '-rotate-3', label: 'Instagram', link: 'https://instagram.com/alcovia.life' },
+  { src: '/footer-cards/1.jpg', angle: '-rotate-3', label: 'Instagram', link: 'https://www.instagram.com/alcovia.life/?hl=en' },
   { src: '/footer-cards/2.jpg', angle: 'rotate-1', label: 'Twitter', link: 'https://twitter.com/alcovia' },
-  { src: '/footer-cards/3.jpg', angle: '-rotate-2', label: 'LinkedIn', link: 'https://linkedin.com/company/alcovia' },
+  { src: '/footer-cards/3.jpg', angle: '-rotate-2', label: 'LinkedIn', link: 'https://www.linkedin.com/company/alcovia-life/posts/?feedView=all' },
   { src: '/footer-cards/4.jpg', angle: 'rotate-3', label: 'YouTube', link: 'https://youtube.com/@alcovia' },
   { src: '/footer-cards/5.jpg', angle: '-rotate-1', label: 'Mentor Sessions', link: '#' },
 ]
